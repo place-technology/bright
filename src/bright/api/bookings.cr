@@ -40,7 +40,7 @@ module Bright
 
         builder.add("include", included_submodels)
 
-        JSON.parse(@session.post("/api/v2.0/bookings?#{io.rewind}", raw: booking.to_json))
+        JSON.parse(@session.post("/api/v2.0/bookings?#{io.rewind}", raw: booking.to_json).body)
       end
 
       def update(booking : Models::Booking, included_submodels : String? = nil)
