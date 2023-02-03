@@ -49,7 +49,7 @@ module Bright
 
         builder.add("include", included_submodels)
 
-        JSON.parse(@session.put("/api/v2.0/bookings?#{io.rewind}", raw: booking.to_json))
+        JSON.parse(@session.put("/api/v2.0/bookings?#{io.rewind}", raw: booking.to_json).body)
       end
 
       def delete(booking_id : String)
