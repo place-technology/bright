@@ -22,7 +22,7 @@ module Bright
         response.data
       end
 
-      def get_occurrences(start_date : String, end_date : String, location_ids : Array(String) = [] of String, space_ids : Array(String) = [] of String, included_submodels : String? = nil, paging_skip : Int32 = 10, paging_take : Int32 = 10, continuation_token : String? = nil) : Array(Models::Occurence)
+      def get_occurrences(start_date : String, end_date : String, location_ids : Array(String) = [] of String, space_ids : Array(String) = [] of String, included_submodels : String? = nil, paging_skip : Int32 = 10, paging_take : Int32 = 10, continuation_token : String? = nil) : Array(Models::Occurrence)
         io = IO::Memory.new
         builder = ParameterBuilder.new(io)
 
@@ -34,7 +34,7 @@ module Bright
         builder.add("end", end_date)
         builder.add("include", included_submodels)
 
-        response = Models::Responses::OccurencesResponse.from_json \
+        response = Models::Responses::OccurrencesResponse.from_json \
           @session.get("/api/v2.0/bookings/occurrences?#{io.rewind}").body
 
         response.items
