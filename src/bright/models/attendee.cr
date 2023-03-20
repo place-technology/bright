@@ -4,10 +4,10 @@ module Bright
       include JSON::Serializable
 
       @[JSON::Field(key: "name")]
-      property name : String
+      property name : String?
 
       @[JSON::Field(key: "emailAddress")]
-      property email_address : String
+      property email_address : String?
     end
   end
 end

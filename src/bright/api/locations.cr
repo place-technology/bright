@@ -4,7 +4,7 @@ module Bright
       def initialize(@session : Session)
       end
 
-      def get(paging_skip : Int32 = 10, paging_take : Int32 = 10)
+      def get(paging_skip : Int32 = 10, paging_take : Int32 = 10) : Array(Models::Location)
         io = IO::Memory.new
         builder = ParameterBuilder.new(io)
 
@@ -12,7 +12,10 @@ module Bright
           builder.add({{x}}, {{x.id}}) unless {{x.id}}.nil?
         {% end %}
 
-        JSON.parse(@session.get("/api/v2.0/locations?#{io.rewind}").body)
+        response = Models::Responses::LocationsResponse.from_json \
+          @session.get("/api/v2.0/locations?#{io.rewind}").body
+
+        response.data
       end
     end
   end

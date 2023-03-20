@@ -14,7 +14,10 @@ module Bright
 
         builder.add("include", included_submodels)
 
-        JSON.parse(@session.get("/api/v2.0/spaces?#{io.rewind}").body)
+        response = Models::Responses::SpacesResponse.from_json \
+          @session.get("/api/v2.0/spaces?#{io.rewind}").body
+
+        response.data
       end
     end
   end
