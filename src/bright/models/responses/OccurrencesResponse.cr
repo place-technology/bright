@@ -1,7 +1,7 @@
 module Bright
   module Models
     module Responses
-      class OccurrenceResponse
+      class OccurrencesResponse
         include JSON::Serializable
 
         @[JSON::Field(key: "meta")]
