@@ -1,6 +1,8 @@
 module Bright
   module Models
     class Location
+      include JSON::Serializable
+
       @[JSON::Field(key: "id")]
       property id : String?
 
